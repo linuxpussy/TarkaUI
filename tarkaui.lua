@@ -12,6 +12,16 @@ function Library:Create()
     self._gui = ScreenGui
     return setmetatable({}, Library)
 end
+function Library:ApplyColorTo(element, color)
+	if typeof(element) == "Instance" and element:IsA("GuiObject") then
+		element.BackgroundColor3 = color
+		for _, child in pairs(element:GetDescendants()) do
+			if child:IsA("GuiObject") then
+				child.BackgroundColor3 = color
+			end
+		end
+	end
+end
 
 function Library:CreateWindow(title)
     local Frame = Instance.new("Frame")
