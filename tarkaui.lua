@@ -61,7 +61,21 @@ function Library:CreateWindow(title)
 
         Scrolling.CanvasSize = UDim2.new(0, 0, 0, UIList.AbsoluteContentSize.Y + 10)
     end
-
+    function win:AddButton(name, callback)
+        local Button = Instance.new("TextButton")
+        Button.Size = UDim2.new(1, -10, 0, 30)
+        Button.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        Button.BorderSizePixel = 0
+        Button.Text = name or "Button"
+        Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Button.Font = Enum.Font.Gotham
+        Button.TextSize = 14
+        Button.Parent = Scrolling
+        Button.MouseButton1Click:Connect(function()
+            pcall(callback)
+        end)
+        Scrolling.CanvasSize = UDim2.new(0, 0, 0, UIList.AbsoluteContentSize.Y + 10)
+    end
     return win
 end
 
