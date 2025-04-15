@@ -61,6 +61,27 @@ function Library:CreateWindow(title)
 
         Scrolling.CanvasSize = UDim2.new(0, 0, 0, UIList.AbsoluteContentSize.Y + 10)
     end
+    function win:AddSwitch(label, default, callback)
+        local Toggle = Instance.new("TextButton")
+        Toggle.Size = UDim2.new(1, -10, 0, 30)
+        Toggle.BackgroundColor3 = default and Color3.fromRGB(0, 170, 0) or Color3.fromRGB(80, 80, 80)
+        Toggle.BorderSizePixel = 0
+        Toggle.Text = (default and "[ON] " or "[OFF] ") .. label
+        Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Toggle.Font = Enum.Font.Gotham
+        Toggle.TextSize = 14
+        Toggle.Parent = Scrolling
+
+        local state = default
+        Toggle.MouseButton1Click:Connect(function()
+            state = not state
+            Toggle.BackgroundColor3 = state and Color3.fromRGB(0, 170, 0) or Color3.fromRGB(80, 80, 80)
+            Toggle.Text = (state and "[ON] " or "[OFF] ") .. label
+            pcall(callback, state)
+        end)
+
+        Scrolling.CanvasSize = UDim2.new(0, 0, 0, UIList.AbsoluteContentSize.Y + 10)
+    end
     function win:AddButton(name, callback)
         local Button = Instance.new("TextButton")
         Button.Size = UDim2.new(1, -10, 0, 30)
