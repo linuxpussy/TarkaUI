@@ -7,7 +7,7 @@ function Library:Create()
     ScreenGui.Name = "CleanUILibrary"
     ScreenGui.ResetOnSpawn = false
     ScreenGui.IgnoreGuiInset = true
-    ScreenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+    ScreenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("CoreGui")
     
     self._gui = ScreenGui
     return setmetatable({}, Library)
