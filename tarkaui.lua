@@ -7,8 +7,7 @@ function Library:Create()
     ScreenGui.Name = "CleanUILibrary"
     ScreenGui.ResetOnSpawn = false
     ScreenGui.IgnoreGuiInset = true
-    ScreenGui.Parent = game:GetService("CoreGui")
-    
+    ScreenGui.Parent = game:GetService("CoreGui") -- ✅ Correct parent
     self._gui = ScreenGui
     return setmetatable({}, Library)
 end
